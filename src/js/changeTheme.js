@@ -11,7 +11,9 @@ const refs = {
 const currentTheme = localStorage.getItem('theme');
 
 function addCurrentTheme() {
-  refs.body.classList.add(currentTheme);
+  if (currentTheme) {
+    refs.body.classList.add(currentTheme);
+  } 
   if (refs.body.classList.contains(Theme.DARK)) {
     refs.themeSwitch.checked = true;
   }
@@ -19,6 +21,7 @@ function addCurrentTheme() {
 
 function onChangeTheme() {
   if (refs.themeSwitch.checked) {
+    refs.body.classList.add(Theme.DARK);
     refs.body.classList.replace(Theme.LIGHT, Theme.DARK);
     localStorage.setItem('theme', Theme.DARK);
   } else {
